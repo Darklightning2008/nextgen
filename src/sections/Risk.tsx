@@ -1,0 +1,10 @@
+import SectionLabel from '../components/SectionLabel'
+const bars=[['RSA-1024',95],['RSA-2048',85],['ECDSA P-256',80],['ML-DSA',10],['SLH-DSA',8]] as const
+export default function Risk(){return <section className="section" id="risk"><SectionLabel number="03" label="Quantum risk"/><div className="risk-heading"><h2>The harvest-now,<br/><em>forge-later</em> problem.</h2><p>Attackers copy signed material today, wait for quantum hardware, then recover private keys with Shor's algorithm. Long-lived certificates make the time between capture and compromise matter.</p></div>
+  <div className="risk-stats"><div><strong>&lt;1M</strong><p>noisy qubits could factor RSA-2048 in under a week</p><span className="mono small">GIDNEY · 2025 ESTIMATE</span></div><div><strong>2030 <i>/</i> 2035</strong><p>NIST draft dates to deprecate then disallow RSA and ECDSA</p><span className="mono small">NIST IR 8547 · DRAFT</span></div><div><strong>FIPS 204</strong><p>The post-quantum signature standard (ML-DSA), finalized 2024</p><span className="mono small">NIST · 2024</span></div></div>
+  <div className="chart-heading"><div><div className="mono small">ALGORITHM EXPOSURE</div><h3>Relative exposure by scheme</h3></div><span className="mono small">SCORE / 100</span></div>
+  <div className="risk-chart" role="img" aria-label="Exposure scores: RSA-1024 95, RSA-2048 85, ECDSA P-256 80, ML-DSA 10, SLH-DSA 8">{bars.map(([name,value])=><div className="bar-row" key={name}><span className="bar-label">{name}</span><div className="bar-track"><div className="bar-fill" style={{width:`${value}%`}}/></div><span className="bar-value">{value}</span></div>)}</div>
+  <p className="chart-caption">Exposure scores come from Sigil's scoring rubric (algorithm family, key size, certificate lifetime, downgrade flags). Illustrative values.</p>
+  <div className="rating-bands"><span><i className="band-dot low"/>Low 0–33</span><span><i className="band-dot medium"/>Medium 34–66</span><span><i className="band-dot high"/>High 67–100</span></div>
+  <p className="recommendation">Recommended path: migrate to ML-DSA or SLH-DSA, using hybrid signatures during the transition.</p>
+</section>}

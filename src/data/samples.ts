@@ -1,0 +1,12 @@
+export type Verdict = 'Valid' | 'Suspicious' | 'Forged'
+export type Sample = {
+  id: string; issuer: string; key: string; algorithm: string; validUntil: string
+  verdict: Verdict; probability: string; exposure: number; level: string; explanation: string
+  fingerprint: string; checks: string[]
+}
+export const samples: Sample[] = [
+  { id:'CERT-2026-0417', issuer:'Univ-CA', key:'RSA-2048', algorithm:'SHA-256', validUntil:'18 Nov 2027', verdict:'Valid', probability:'0.04', exposure:82, level:'High', explanation:'The signature is genuine, but RSA-2048 is within reach of a future quantum attack. Plan a move to ML-DSA.', fingerprint:'8F:2A:91:CC:4D:70:1B:AE', checks:['DER structure parsed','RSA signature matched','Univ-CA chain trusted','Certificate is within validity','No forgery indicators found','RSA-2048 exposure rated High'] },
+  { id:'CERT-2026-0212', issuer:'Gov-CA', key:'ECDSA P-256', algorithm:'SHA-256', validUntil:'02 Aug 2028', verdict:'Suspicious', probability:'0.46', exposure:80, level:'High', explanation:'The signature verifies, but the issuer metadata and signing pattern need review. ECDSA P-256 also has high quantum exposure.', fingerprint:'4B:71:0D:3E:88:19:AF:52', checks:['DER structure parsed','ECDSA signature matched','Issuer chain needs review','Certificate is within validity','Metadata pattern flagged','ECDSA P-256 exposure rated High'] },
+  { id:'CERT-2026-0733', issuer:'Self-signed', key:'RSA-1024', algorithm:'SHA-1', validUntil:'14 Jan 2025', verdict:'Forged', probability:'0.93', exposure:95, level:'High', explanation:'The sample fails the hard-rule checks: its certificate is expired and its signature metadata is inconsistent. Do not trust it.', fingerprint:'D1:09:6E:4A:21:77:CC:03', checks:['DER structure parsed','Signature mismatch detected','No trusted issuer chain','Certificate has expired','Multiple forgery indicators','RSA-1024 exposure rated High'] },
+  { id:'CERT-2026-0590', issuer:'Corp-CA', key:'ML-DSA', algorithm:'SHAKE-256', validUntil:'30 Sep 2030', verdict:'Valid', probability:'0.02', exposure:10, level:'Low', explanation:'The post-quantum signature is valid and the sample has a low exposure score under Sigil’s illustrative rubric.', fingerprint:'C3:80:5A:12:9D:44:EE:61', checks:['DER structure parsed','ML-DSA signature matched','Corp-CA chain trusted','Certificate is within validity','No forgery indicators found','ML-DSA exposure rated Low'] },
+]

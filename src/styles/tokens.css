@@ -1,0 +1,15 @@
+:root {
+  color-scheme: light;
+  --paper: #F6F4EF;
+  --ink: #151515;
+  --muted: #6B6B66;
+  --line: #D9D6CD;
+  --accent: #D9391F;
+  --valid: #1F6B4A;
+  --suspicious: #94600F;
+  --forged: #B92E1B;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Inter', Arial, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --page: 1120px;
+}
